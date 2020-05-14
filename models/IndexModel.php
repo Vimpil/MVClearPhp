@@ -28,9 +28,9 @@ class IndexModel extends Model {
 		$_SESSION['datapassword']=$password;
 
 		if(!empty($res)) {
-			$_SESSION['role_id'] = '1';
+			$_SESSION['role_id'] = 1;
 		} else {
-			$_SESSION['role_id'] = '0';
+			$_SESSION['role_id'] = 0;
 			return false;
 		}
 	}

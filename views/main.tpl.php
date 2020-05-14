@@ -18,20 +18,21 @@
         <div class="col-sm-6 col-md-4 col-md-offset-4">
             
             <div class="account-wall">                
-                <p class="text-center login-title">Admin Sign in</p>
+                
 
-                <?php
+                <?php if (isset($_SESSION['role_id'])):?>
 
-                    if (isset($_SESSION['role_id'])) {
-                       echo $_SESSION['role_id'];
-                    } else{
-                        echo 'not set';
-                    }
+                    <?php $_SESSION['role_id'];?>
 
-                ?>
+                    <?php if (($_SESSION['role_id'])==1):?>
+                       
+                       <p class="text-center login-title">Admin</p>
 
+                <?php else:?>
 
-               <form method="post" class="form-signin" id="form-signin" name="form-signin">
+                    <p class="text-center login-title">Admin Sign in</p>
+
+                    <form method="post" class="form-signin" id="form-signin" name="form-signin">
 
                             <input type="hidden" name="action" value="login"> 
                                
@@ -46,11 +47,16 @@
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Пароль" required>
                                 
                                 <input type="submit" class="btn btn-lg btn-primary btn-block" value="Вход"/>
-                </form>
+                        </form>
+
+                 <?php endif; ?>
+                <?php endif; ?>
+                    
+               
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 	</div>
 
 	<footer>
