@@ -1,5 +1,6 @@
 <?php
 
+require_once('Controller.php');
 
 class IndexController extends Controller {
 	
@@ -13,7 +14,9 @@ class IndexController extends Controller {
 
 
 	public function index() {
-		$this->pageData['title'] = "Вход в личный кабинет";
+
+		$this->pageData['title'] = "Список задач";
+		$_SESSION['role_id'] = 0;
 
 		if(!empty($_POST)) {
 			$action = $_POST['action'];
@@ -22,12 +25,22 @@ class IndexController extends Controller {
 
 				case 'login':
 					if(!$this->login()) {
+						echo ("login");
 						$this->pageData['error'] = "Неправильный логин или пароль";
 					}
+					break;
+
+				case 'something':
+					
 					break;
 				
 			}
 		}
+
+		 
+		print_r($this->model->getUsernames());
+		
+		$_SESSION['users'] = $this->model->getUsernames();
 
 		$this->view->render($this->pageTpl, $this->pageData);
 	}
@@ -38,8 +51,17 @@ class IndexController extends Controller {
 		if(!$this->model->checkUser()) {
 			return false;
 		}
+	
 		
-	}	
+		
+	}
+
+
+	public function responces() {
+		echo '1.45';
+		return 1.45;
+	}
+
 
 
 

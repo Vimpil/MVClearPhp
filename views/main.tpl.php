@@ -2,73 +2,142 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title><?php echo $pageData['title']; ?></title>
+	
+    <title><?php echo $pageData['title']; ?></title>
 	<meta name="vieport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/style.css">
 </head>
 <body>
 	
 	<header></header>
 
 	<div id="content">
-		<div class="container">
-    <div class="row">
-        <div class="col-sm-6 col-md-4 col-md-offset-4">
-            
-            <div class="account-wall">                
-                
 
-                <?php if (isset($_SESSION['role_id'])):?>
+<?php 
+  echo $_SESSION['role_id'];
+ ?>
+<?php $adminLogin= ob_get_contents(); ?>
 
-                    <?php $_SESSION['role_id'];?>
+            <?php if (isset($_SESSION['role_id'])):?>
 
-                    <?php if (($_SESSION['role_id'])==1):?>
-                       
-                       <p class="text-center login-title">Admin</p>
-
-                <?php else:?>
-
-                    <p class="text-center login-title">Admin Sign in</p>
-
-                    <form method="post" class="form-signin" id="form-signin" name="form-signin">
-
-                            <input type="hidden" name="action" value="login"> 
-                               
-                                <?php if(!empty($pageData['loginError'])) :?>
-
-                                    <p><?php echo $pageData['loginError']; ?></p>
-                                
-                                <?php endif; ?>
-                                
-                                <input type="text" name="login" class="form-control" id="login" placeholder="Логин" required autofocus>
-                                
-                                <input type="password" name="password" class="form-control" id="password" placeholder="Пароль" required>
-                                
-                                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Вход"/>
-                        </form>
-
-                 <?php endif; ?>
-                <?php endif; ?>
+              <!-- IF logged ADMIN -->
+              <?php if (($_SESSION['role_id'])==1):?>
+                 
+                  <p class="text-center login-title">Admin</p>
+                  
+              <!-- ELSE -->
+              <?php else:
+                echo '<p class="text-center login-title">Admin Sign in</p>
                     
-               
-                    </div>
-                </div>
-            </div>
-        </div>
+                <form method="post" class="form-signin" id="form-signin" name="form-signin">
+                    
+                        <input type="hidden" name="action" value="login">';
+                           
+                            if(!empty($pageData['loginError'])){
+                    
+                                echo '<p>';
+                                echo $pageData['loginError']; 
+                                echo '</p>';
+                            
+                            }
+                            echo'
+                            <input type="text" name="login" class="form-control" id="login" placeholder="Логин" required autofocus>
+                            
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Пароль" required>
+                            
+                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Вход"/>
+                    </form>';
+              endif; 
+             else:
+               echo '<p class="text-center login-title">Admin Sign in</p>
+                    
+                <form method="post" class="form-signin" id="form-signin" name="form-signin">
+                    
+                        <input type="hidden" name="action" value="login">';
+                           
+                            if(!empty($pageData['loginError'])){
+                    
+                                echo '<p>';
+                                echo $pageData['loginError']; 
+                                echo '</p>';
+                            
+                            }
+                            echo'
+                            <input type="text" name="login" class="form-control" id="login" placeholder="Логин" required autofocus>
+                            
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Пароль" required>
+                            
+                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Вход"/>
+                    </form>';
+            endif;?>
+
+
+        
+      <table id="myTable">
+        
+        <tbody>
+          <tr>
+              <th onclick="sortTable(0)" id="nameClick">Name</th>
+              <th onclick="sortTable(1)" id="countryClick">Country</th>
+              <th onclick="sortTable(1)" id="countryClick">Country</th>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>Germany</td>
+            <td>Germany</td>
+          </tr>
+          <tr>
+            <td>Berglunds snabbkop</td>
+            <td>Sweden</td>
+            <td>Sweden</td>
+          </tr>
+          <tr>
+            <td>Berglunds snabbkop</td>
+            <td>Sweden</td>
+            <td>Sweden</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+      <form method="post" class="form-signin" id="form-signin" name="form-signin">
+        
+      </form>
+
+<h2>table</h2>
+     
+
+<div class="container">  
+      <h3 align="center">Make Pagination using Jquery, PHP, Ajax and MySQL</h3><br />  
+      <div class="table-responsive" id="pagination_data">  
+      </div>  
+</div> 
+    
+  <?php 
+    
+    echo ' $_SESSION[users] \n*************************';
+    print_r ($_SESSION['users'][1]['email']);
+    echo '$_SESSION[users] \n';
+
+     ?>
+    </select>
+
+    <!-- User details -->
+    <div >
+     Username : <span id='suname'></span><br/>
+     Name : <span id='sname'></span><br/>
+     Email : <span id='semail'></span><br/>
+    </div>
+
+
 	</div>
 
 	<footer>
 		
 	</footer>
-
-
-	<script src="/js/jquery.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/angular.min.js"></script>
-	<script src="/js/script.js"></script>
-
+  <script src="/lib/js/jquery.js"></script>
+ <script src="/lib/js/script.js"></script>
 
 </body>
 </html>
+
