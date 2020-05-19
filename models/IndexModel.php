@@ -6,6 +6,7 @@ class IndexModel extends Model {
 	
 	public function checkUser() {
 
+		$_SESSION['role_id'] = 0;
 		$login = $_POST['login'];
 		$password = md5($_POST['password']);
 
@@ -21,10 +22,7 @@ class IndexModel extends Model {
 
 		if(!empty($res)) {
 			$_SESSION['role_id'] = 1;
-		} else {
-			$_SESSION['role_id'] = 0;
-			return false;
-		}
+		} 
 
 	}
 
@@ -72,16 +70,17 @@ class IndexModel extends Model {
 
 	function getUsernames(){
 
- if (isset($_POST['something'])){
+		// if (isset($_POST['something'])){
 
-		$something = $_POST['something'];
+		// 	$something = $_POST['something'];
 
-		if($something){
-			print_r($something);
-		}
-	}else{
-		echo ' not set ';
-	}
+		// 	if($something){
+		// 		print_r($something);
+		// 	}
+			
+		// }else{
+		// 	echo ' not set ';
+		// }
 
 	 
 	 echo '\$request_url/';
@@ -131,6 +130,7 @@ class IndexModel extends Model {
 	    return $response;
   	}     
      
+
 
 	
 	

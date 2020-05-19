@@ -2,6 +2,7 @@
 
 require_once('Controller.php');
 
+
 class IndexController extends Controller {
 	
 	private $pageTpl = '/views/main.tpl.php';
@@ -21,17 +22,21 @@ class IndexController extends Controller {
 		if(!empty($_POST)) {
 			$action = $_POST['action'];
 			
+			
 			switch ($action) {
 
 				case 'login':
 					if(!$this->login()) {
-						echo ("login");
-						$this->pageData['error'] = "Неправильный логин или пароль";
+						$this->pageData['loginError'] = "Неправильный логин или пароль";
+						$this->pageData['action'] = $action;
 					}
 					break;
 
-				case 'something':
-					
+				case 'createTableTasks':
+					if(!$this->login()) {
+						$this->pageData['loginError'] = "Something";
+						echo 'HEHE';
+					}
 					break;
 				
 			}
@@ -62,7 +67,19 @@ class IndexController extends Controller {
 		return 1.45;
 	}
 
+	public function getName()
+	  {		
+     
+     		return '$result';
 
+	  }
 
 
 }
+
+// if(isset( $_POST['action'] )) {
+
+// 	echo 'smth';
+// 	// print_r($_POST['action']);
+// }
+

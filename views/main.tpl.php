@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	
-    <title><?php echo $pageData['title']; ?></title>
-	<meta name="vieport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/lib/css/style.css">
+  <title><?php echo $pageData['title']; ?></title>
+	
+  <meta name="vieport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="/lib/css/style.css">
 </head>
 <body>
 	
@@ -13,64 +13,44 @@
 
 	<div id="content">
 
+  <?php echo $_SESSION['role_id']; ?>
+  <?php $adminLogin= ob_get_contents(); ?>
+
+            
+  <!-- IF logged ADMIN -->
+  <?php if (($_SESSION['role_id'])==1):?>
+     
+    <p class="text-center login-title">Admin</p>
+      
+  <!-- ELSE -->
+  <?php else:
+    echo '<p class="text-center login-title">Admin Sign in</p>
+    
+    <form method="post" class="form-signin" id="form-signin" name="form-signin">
+        
+        <input type="hidden" name="action" value="login">';
+               
+                if(!empty($pageData['loginError'])){                    
+                    echo '<p>';
+                    echo '<p>LOGIN ERROR<p>';
+                    echo $pageData['loginError'];
+                    echo '</p>';                  
+                }
+
+                echo'<input type="text" name="login" class="form-control" id="login" placeholder="Логин" required autofocus>
+                
+                <input type="password" name="password" class="form-control" id="password" placeholder="Пароль" required>
+                
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Вход"/>
+        </form>';
+  endif; ?>
+             
+
 <?php 
-  echo $_SESSION['role_id'];
- ?>
-<?php $adminLogin= ob_get_contents(); ?>
-
-            <?php if (isset($_SESSION['role_id'])):?>
-
-              <!-- IF logged ADMIN -->
-              <?php if (($_SESSION['role_id'])==1):?>
-                 
-                  <p class="text-center login-title">Admin</p>
-                  
-              <!-- ELSE -->
-              <?php else:
-                echo '<p class="text-center login-title">Admin Sign in</p>
-                    
-                <form method="post" class="form-signin" id="form-signin" name="form-signin">
-                    
-                        <input type="hidden" name="action" value="login">';
-                           
-                            if(!empty($pageData['loginError'])){
-                    
-                                echo '<p>';
-                                echo $pageData['loginError']; 
-                                echo '</p>';
-                            
-                            }
-                            echo'
-                            <input type="text" name="login" class="form-control" id="login" placeholder="Логин" required autofocus>
-                            
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Пароль" required>
-                            
-                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Вход"/>
-                    </form>';
-              endif; 
-             else:
-               echo '<p class="text-center login-title">Admin Sign in</p>
-                    
-                <form method="post" class="form-signin" id="form-signin" name="form-signin">
-                    
-                        <input type="hidden" name="action" value="login">';
-                           
-                            if(!empty($pageData['loginError'])){
-                    
-                                echo '<p>';
-                                echo $pageData['loginError']; 
-                                echo '</p>';
-                            
-                            }
-                            echo'
-                            <input type="text" name="login" class="form-control" id="login" placeholder="Логин" required autofocus>
-                            
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Пароль" required>
-                            
-                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Вход"/>
-                    </form>';
-            endif;?>
-
+             if(!empty($pageData['something'])){
+                echo 'SOMETHING COMNMMMING';
+             }
+?>
 
         
       <table id="myTable">
@@ -119,7 +99,7 @@
     print_r ($_SESSION['users'][1]['email']);
     echo '$_SESSION[users] \n';
 
-     ?>
+  ?>
     </select>
 
     <!-- User details -->
