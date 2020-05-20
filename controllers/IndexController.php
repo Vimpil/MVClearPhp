@@ -28,14 +28,12 @@ class IndexController extends Controller {
 				case 'login':
 					if(!$this->login()) {
 						$this->pageData['loginError'] = "Неправильный логин или пароль";
-						$this->pageData['action'] = $action;
 					}
 					break;
 
-				case 'createTableTasks':
-					if(!$this->login()) {
-						$this->pageData['loginError'] = "Something";
-						echo 'HEHE';
+				case 'name':
+					if(!$this->addTask()) {
+						
 					}
 					break;
 				
@@ -56,8 +54,14 @@ class IndexController extends Controller {
 		if(!$this->model->checkUser()) {
 			return false;
 		}
-	
 		
+	}
+
+	public function addTask() {
+
+		if(!$this->model->addTask()) {
+			return false;
+		}
 		
 	}
 

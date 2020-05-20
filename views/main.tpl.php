@@ -98,16 +98,30 @@
     echo ' $_SESSION[users] \n*************************';
     print_r ($_SESSION['users'][1]['email']);
     echo '$_SESSION[users] \n';
+    echo ' $_SESSION[users] \n*************************';
+    print_r ($_SESSION['addRow']);
+    echo '$_SESSION[users] \n';
 
   ?>
     </select>
 
-    <!-- User details -->
-    <div >
-     Username : <span id='suname'></span><br/>
-     Name : <span id='sname'></span><br/>
-     Email : <span id='semail'></span><br/>
-    </div>
+    <p class="text-center login-title">Add task</p>
+    
+    <form method="post" class="form-addTask" id="form-addTask" name="form-addTask">
+        
+      <input type="hidden" name="action" value="name">
+                 
+      <input type="text" name="name" class="form-control" id="name" placeholder="Пользователь" required autofocus>
+                  
+      <input type="email" name="email" class="form-control" id="email" placeholder="e-mail" required>
+
+      <input type="text" name="task" class="form-control" id="task" placeholder="Задача" required>
+                  
+      <input type="submit" class="btn btn-lg btn-primary btn-block" value="Добавить"/>
+    
+    </form>
+
+   
 
 
 	</div>

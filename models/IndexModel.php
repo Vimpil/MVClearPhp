@@ -77,13 +77,13 @@ class IndexModel extends Model {
 		// 	if($something){
 		// 		print_r($something);
 		// 	}
-			
+
 		// }else{
 		// 	echo ' not set ';
 		// }
 
 	 
-	 echo '\$request_url/';
+	 // echo '\$request_url/';
 
 		$record_per_page = 5;  
 		$page = '';  
@@ -109,7 +109,52 @@ class IndexModel extends Model {
 
   	}
 
-  	function updateUsernames(){
+  	function addTask(){
+// FROM tasks ORDER BY DESC LIMIT 1";
+  		
+
+  		$query = "SELECT * from tasks;";
+		$stmt = $this->db->prepare($query);
+		$stmt->execute();
+
+		$lastId=[];
+
+		while($row=$stmt->fetch()){
+		    
+		    $id = $row['id'];
+		    $name = $row['name'];
+		    $email = $row['email'];
+		    $task = $row['task'];
+		    
+
+		    $lastId = array("id" => $id,"name" => $name,"email" => $email,"task" => $task);
+		}
+
+		$_SESSION['addRow']=$lastId;
+
+  		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$task = $_POST['task'];
+		
+		$status = 0;
+		$newId=$lastId['id']+1;
+
+		$query = "INSERT INTO tasks VALUES ('$newId', '$name', '$email', '$task', '$status');";
+
+		$stmt = $this->db->prepare($query);
+		$stmt->execute();
+
+		// $query = "Delete from tasks where email='email';";
+		// $stmt = $this->db->prepare($query);
+		// $stmt->execute();
+
+
+		// $query = "INSERT INTO tasks VALUES ($lastId, $name, $email, $task, $status);";
+		// $stmt = $this->db->prepare($query);
+		// // $stmt = $this->db->insert('tasks', $data);
+		// $stmt->execute();
+
+		
 
   	}
 
