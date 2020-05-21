@@ -53,7 +53,7 @@
 ?>
 
         
-      <table id="myTable">
+     <!--  <table id="myTable">
         
         <tbody>
           <tr>
@@ -78,7 +78,7 @@
           </tr>
         </tbody>
 
-      </table>
+      </table> -->
 
       <form method="post" class="form-signin" id="form-signin" name="form-signin">
         
@@ -95,12 +95,17 @@
     
   <?php 
     
-    echo ' $_SESSION[users] \n*************************';
-    print_r ($_SESSION['users'][1]['email']);
-    echo '$_SESSION[users] \n';
-    echo ' $_SESSION[users] \n*************************';
-    print_r ($_SESSION['addRow']);
-    echo '$_SESSION[users] \n';
+    // echo ' $_SESSION[users] \n*************************';
+    // // print_r ($_SESSION['users'][1]['email']);
+    // echo '$_SESSION[users] \n';
+    // echo ' $_SESSION[users] \n*************************';
+    // print_r ($_SESSION['addRow']);
+    // echo '$_SESSION[users] \n';
+// if(isset($_SESSION['page'])){
+//   print_r($_SESSION['page']);
+// }else{
+//   echo 'not set';
+// }
 
   ?>
     </select>

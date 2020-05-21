@@ -68,49 +68,133 @@ class IndexModel extends Model {
 	}
 
 
-	function getUsernames(){
+	// function getUsernames(){
 
-		// if (isset($_POST['something'])){
+	// 	// if (isset($_POST['something'])){
 
-		// 	$something = $_POST['something'];
+	// 	// 	$something = $_POST['something'];
 
-		// 	if($something){
-		// 		print_r($something);
-		// 	}
+	// 	// 	if($something){
+	// 	// 		print_r($something);
+	// 	// 	}
 
-		// }else{
-		// 	echo ' not set ';
-		// }
+	// 	// }else{
+	// 	// 	echo ' not set ';
+	// 	// }
 
 	 
-	 // echo '\$request_url/';
+	//  // echo '\$request_url/';
+
+	// 	$record_per_page = 5;  
+	// 	$page = '';  
+	// 	$output = '';  
+	// 	$res = [];
+		
+	// 	$query = "SELECT * FROM tasks LIMIT $record_per_page";
+	// 	$stmt = $this->db->prepare($query);
+	// 	$stmt->execute();
+		
+	// 	while ($row=$stmt->fetch())
+
+	// 	{	
+	// 		$id = $row['id'];
+	// 	    $name = $row['name'];
+	// 	    $email = $row['email'];
+	// 	    $task = $row['task'];
+	// 	    $res[] = array("id" => $id,"name" => $name,"email" => $email,"task" => $task);
+	// 	}
+
+	    
+	//     return $res;
+
+ //  	}
+
+	function changeTablePage(){
+
 
 		$record_per_page = 5;  
 		$page = '';  
-		$output = '';  
+		$output = '';
+		$total_records = '';
 		$res = [];
+
+		if(isset($_POST["page"]))  
+		 {  
+		      $page = $_POST["page"];  
+		 }  
+		 else  
+		 {  
+		      $page = 1;  
+		 }  
 		
-		$query = "SELECT * FROM tasks LIMIT $record_per_page";
+		$_SESSION['page']='running Fun';
+ 		$start_from = ($page - 1)*$record_per_page;
+ 		echo '$page';
+ 		echo $page;
+ 		echo '$page';
+ 		echo $start_from;
+ 		echo '$page';
+ 		echo $record_per_page;
+ 		echo '$page';
+		$query = "SELECT * FROM tasks ORDER BY 'id' ASC LIMIT $start_from, $record_per_page";
+		
 		$stmt = $this->db->prepare($query);
 		$stmt->execute();
+
+		$output .= "  
+			<table id='myTable'>
+	        <tbody>
+	        <tr>
+	        	<th onclick='sortTable(0)' id='idClick'>id</th>
+              	<th onclick='sortTable(1)' id='nameClick'>name</th>
+              	<th onclick='sortTable(1)' id='emailClick'>email</th>
+              	<th onclick='sortTable(1)' id='taskClick'>task</th>
+              	<th onclick='sortTable(1)' id='statusClick'>status</th>
+           </tr>  
+		";  
 		
 		while ($row=$stmt->fetch())
 
 		{	
-			$id = $row['id'];
-		    $name = $row['name'];
-		    $email = $row['email'];
-		    $task = $row['task'];
-		    $res[] = array("id" => $id,"name" => $name,"email" => $email,"task" => $task);
+			 $output .= '  
+			           <tr>  
+			                <td>'.$row["id"].'</td>  
+			                <td>'.$row["name"].'</td>  
+			                 <td>'.$row["email"].'</td>  
+			                <td>'.$row["task"].'</td>  
+			                 <td>'.$row["status"].'</td>  
+			           </tr>  
+			      ';  
+		}
+		
+		$query = "SELECT COUNT(IFNULL(id, 1)) FROM tasks;";
+		$stmt = $this->db->prepare($query);
+		$stmt->execute();
+
+		while ($row=$stmt->fetch())
+
+		{	
+			 $total_records=$row[0];
 		}
 
-	    
-	    return $res;
+
+		$output .= '</table><br /><div align="center">';
+		$total_pages = ceil($total_records/$record_per_page);
+		for($i=1; $i<=$total_pages; $i++)  
+		 {  
+		      $output .= "<span class='pagination_link' style='cursor:pointer; padding:6px; border:1px solid #ccc;' id='".$i."'>".$i."</span>";  
+		 } 
+		
+
+$res = $output;
+
+	    print_r($res);
+
 
   	}
 
   	function addTask(){
-// FROM tasks ORDER BY DESC LIMIT 1";
+	// FROM tasks ORDER BY DESC LIMIT 1";
   		
 
   		$query = "SELECT * from tasks;";
@@ -158,22 +242,7 @@ class IndexModel extends Model {
 
   	}
 
-  	function getUserDetails($postData=array()){
-	 
-	    $response = array();
-	 
-	    if(isset($postData['username']) ){
-	 
-	      // Select record
-	      $this->db->select('*');
-	      $this->db->where('username', $postData['username']);
-	      $records = $this->db->get('users');
-	      $response = $records->result_array();
-	 
-	    }
-	 
-	    return $response;
-  	}     
+  	
      
 
 
