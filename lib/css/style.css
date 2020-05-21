@@ -16,3 +16,11 @@ th, td {
 tr:nth-child(even) {
   background-color: #f2f2f2
 }
+
+.choosen{
+	color:red;
+}
+
+#pagination_data tr{
+	cursor: pointer;
+}

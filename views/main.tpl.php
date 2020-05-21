@@ -15,7 +15,6 @@
 
   <?php echo $_SESSION['role_id']; ?>
   <?php $adminLogin= ob_get_contents(); ?>
-
             
   <!-- IF logged ADMIN -->
   <?php if (($_SESSION['role_id'])==1):?>
@@ -122,7 +121,17 @@
 
       <input type="text" name="task" class="form-control" id="task" placeholder="Задача" required>
                   
-      <input type="submit" class="btn btn-lg btn-primary btn-block" value="Добавить"/>
+      <input type="submit" class="btn btn-lg btn-primary btn-block" value="Добавить" id='addBtn'/>
+
+      <?php if (($_SESSION['role_id'])==1):?>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Обновить" disabled id='updateBtn'/>
+        <script>
+          window.role_id = 1;
+        </script>
+      <?php endif; ?>
+
+
+
     
     </form>
 

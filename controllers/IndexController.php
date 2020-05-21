@@ -46,7 +46,14 @@ class IndexController extends Controller {
 				case 'changeTablePage':
 
 					if(!$this->changeTablePage()) {
-						$this->pageData['loginError'] = "WORRRRK)";
+						
+					}
+					break;
+
+				case 'updateRowStatus':
+
+				if(!$this->updateRowStatus()) {
+						
 					}
 					break;
 
@@ -82,6 +89,14 @@ class IndexController extends Controller {
 	public function changeTablePage() {
 
 		if(!$this->model->changeTablePage()) {
+			return false;
+		}
+		
+	}
+
+	public function updateRowStatus() {
+
+		if(!$this->model->updateRowStatus()) {
 			return false;
 		}
 		

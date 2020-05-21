@@ -109,8 +109,9 @@ class IndexModel extends Model {
 
  //  	}
 
-	function changeTablePage(){
+	
 
+	function changeTablePage(){
 
 		$record_per_page = 5;  
 		$page = '';  
@@ -152,17 +153,23 @@ class IndexModel extends Model {
               	<th onclick='sortTable(1)' id='statusClick'>status</th>
            </tr>  
 		";  
-		
+		$status='';
 		while ($row=$stmt->fetch())
 
 		{	
+			if($row["status"]==0){
+				$status='<input type="checkbox">';
+			}else{
+				$status='<input type="checkbox" checked>';
+			};
+
 			 $output .= '  
 			           <tr>  
 			                <td>'.$row["id"].'</td>  
 			                <td>'.$row["name"].'</td>  
 			                 <td>'.$row["email"].'</td>  
 			                <td>'.$row["task"].'</td>  
-			                 <td>'.$row["status"].'</td>  
+			                 <td>'.$status.'</td>  
 			           </tr>  
 			      ';  
 		}
@@ -186,7 +193,7 @@ class IndexModel extends Model {
 		 } 
 		
 
-$res = $output;
+		$res = $output;
 
 	    print_r($res);
 
@@ -239,6 +246,22 @@ $res = $output;
 		// $stmt->execute();
 
 		
+
+  	}
+
+
+  	function updateRowStatus(){
+
+  		$id = $_POST["id"];  
+  		$status = $_POST["status"];  
+
+
+		$query = "UPDATE tasks SET status='$status' WHERE id=$id;";
+
+		$stmt = $this->db->prepare($query);
+		$stmt->execute();
+
+		echo $id . $status;
 
   	}
 
