@@ -68,9 +68,9 @@
 
     <p class="text-center login-title">Add task</p>
     
-    <form method="post" class="form-addTask" id="form-addTask" name="form-addTask">
+    <form class="form-addTask" id="form-addTask" name="form-addTask">
         
-      <input type="hidden" name="action" value="name">
+      <input type="hidden">
                  
       <input type="text" name="name" class="form-control" id="name" placeholder="Пользователь" required autofocus>
                   
@@ -78,10 +78,10 @@
 
       <input type="text" name="task" class="form-control" id="task" placeholder="Задача" required>
                   
-      <input type="submit" class="btn btn-lg btn-primary btn-block" value="Добавить" id='addBtn'/>
+      <input type="button" class="btn btn-lg btn-primary btn-block" value="Добавить" id='addBtn'/>
 
       <?php if (($_SESSION['role_id'])==1):?>
-        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Обновить" disabled id='updateBtn'/>
+        <input type="button" class="btn btn-lg btn-primary btn-block" value="Обновить" disabled id='updateBtn'/>
         <script>
           window.role_id = 1;
         </script>

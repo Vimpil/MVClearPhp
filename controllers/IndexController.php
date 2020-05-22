@@ -35,7 +35,7 @@ class IndexController extends Controller {
 					break;
 
 
-				case 'name':
+				case 'addTask':
 
 					if(!$this->addTask()) {
 						
