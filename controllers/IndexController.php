@@ -57,6 +57,13 @@ class IndexController extends Controller {
 					}
 					break;
 
+				case 'updateRowTask':
+
+				if(!$this->updateRowTask()) {
+						
+					}
+					break;
+
 
 			}
 		}
@@ -81,8 +88,11 @@ class IndexController extends Controller {
 	public function addTask() {
 
 		if(!$this->model->addTask()) {
+
 			return false;
 		}
+
+		$this->changeTablePage();
 		
 	}
 
@@ -97,6 +107,14 @@ class IndexController extends Controller {
 	public function updateRowStatus() {
 
 		if(!$this->model->updateRowStatus()) {
+			return false;
+		}
+		
+	}
+
+	public function updateRowTask() {
+
+		if(!$this->model->updateRowTask()) {
 			return false;
 		}
 		

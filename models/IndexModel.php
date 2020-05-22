@@ -146,11 +146,11 @@ class IndexModel extends Model {
 			<table id='myTable'>
 	        <tbody>
 	        <tr>
-	        	<th onclick='sortTable(0)' id='idClick' style='width:10%'>id</th>
-              	<th onclick='sortTable(1)' id='nameClick' style='width:20%'>name</th>
-              	<th onclick='sortTable(1)' id='emailClick' style='width:20%'>email</th>
-              	<th onclick='sortTable(1)' id='taskClick' style='width:40%'>task</th>
-              	<th onclick='sortTable(1)' id='statusClick' style='width:10%'>status</th>
+	        	<th id='idClick' style='width:10%'>id</th>
+              	<th id='nameClick' style='width:20%'>name</th>
+              	<th id='emailClick' style='width:20%'>email</th>
+              	<th id='taskClick' style='width:40%'>task</th>
+              	<th id='statusClick' style='width:10%'>status</th>
            </tr>  
 		";  
 		$status='';
@@ -185,11 +185,16 @@ class IndexModel extends Model {
 		}
 
 
-		$output .= '</table><br /><div align="center">';
+		$output .= '</table><br /><div align="center" id="table_pages">';
 		$total_pages = ceil($total_records/$record_per_page);
 		for($i=1; $i<=$total_pages; $i++)  
 		 {  
+		 	if ($i==$page){
+				$output .= "<span class='pagination_link active' style='cursor:pointer; padding:6px; border:1px solid #ccc;' id='".$i."'>".$i."</span>";
+		 	}else{
+
 		      $output .= "<span class='pagination_link' style='cursor:pointer; padding:6px; border:1px solid #ccc;' id='".$i."'>".$i."</span>";  
+		  }
 		 } 
 		
 
@@ -252,8 +257,8 @@ class IndexModel extends Model {
 
   	function updateRowStatus(){
 
-  		$id = $_POST["id"];  
-  		$status = $_POST["status"];  
+  		$id = $_POST['id'];  
+  		$status = $_POST['status'];  
 
 
 		$query = "UPDATE tasks SET status='$status' WHERE id=$id;";
@@ -261,7 +266,20 @@ class IndexModel extends Model {
 		$stmt = $this->db->prepare($query);
 		$stmt->execute();
 
-		echo $id . $status;
+  	}
+
+
+  	function updateRowTask(){
+
+  		$id = $_POST['id'];  
+  		$task = $_POST['task'];  
+
+
+		$query = "UPDATE tasks SET task='$task' WHERE id=$id;";
+
+		$stmt = $this->db->prepare($query);
+		$stmt->execute();
+
 
   	}
 

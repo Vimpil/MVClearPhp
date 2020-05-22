@@ -32,3 +32,7 @@ tr:nth-child(even) {
         -webkit-user-select: none;
         -o-user-select: none;
 }
+
+.pagination_link.active{
+	color: cornflowerblue;
+}
