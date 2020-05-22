@@ -146,11 +146,11 @@ class IndexModel extends Model {
 			<table id='myTable'>
 	        <tbody>
 	        <tr>
-	        	<th onclick='sortTable(0)' id='idClick'>id</th>
-              	<th onclick='sortTable(1)' id='nameClick'>name</th>
-              	<th onclick='sortTable(1)' id='emailClick'>email</th>
-              	<th onclick='sortTable(1)' id='taskClick'>task</th>
-              	<th onclick='sortTable(1)' id='statusClick'>status</th>
+	        	<th onclick='sortTable(0)' id='idClick' style='width:10%'>id</th>
+              	<th onclick='sortTable(1)' id='nameClick' style='width:20%'>name</th>
+              	<th onclick='sortTable(1)' id='emailClick' style='width:20%'>email</th>
+              	<th onclick='sortTable(1)' id='taskClick' style='width:40%'>task</th>
+              	<th onclick='sortTable(1)' id='statusClick' style='width:10%'>status</th>
            </tr>  
 		";  
 		$status='';

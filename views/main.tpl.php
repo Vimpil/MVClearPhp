@@ -45,40 +45,6 @@
   endif; ?>
              
 
-<?php 
-             if(!empty($pageData['something'])){
-                echo 'SOMETHING COMNMMMING';
-             }
-?>
-
-        
-     <!--  <table id="myTable">
-        
-        <tbody>
-          <tr>
-              <th onclick="sortTable(0)" id="nameClick">Name</th>
-              <th onclick="sortTable(1)" id="countryClick">Country</th>
-              <th onclick="sortTable(1)" id="countryClick">Country</th>
-          </tr>
-          <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Germany</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Berglunds snabbkop</td>
-            <td>Sweden</td>
-            <td>Sweden</td>
-          </tr>
-          <tr>
-            <td>Berglunds snabbkop</td>
-            <td>Sweden</td>
-            <td>Sweden</td>
-          </tr>
-        </tbody>
-
-      </table> -->
-
       <form method="post" class="form-signin" id="form-signin" name="form-signin">
         
       </form>
@@ -86,28 +52,19 @@
 <h2>table</h2>
      
 
-<div class="container">  
-      <h3 align="center">Make Pagination using Jquery, PHP, Ajax and MySQL</h3><br />  
-      <div class="table-responsive" id="pagination_data">  
-      </div>  
-</div> 
-    
-  <?php 
-    
-    // echo ' $_SESSION[users] \n*************************';
-    // // print_r ($_SESSION['users'][1]['email']);
-    // echo '$_SESSION[users] \n';
-    // echo ' $_SESSION[users] \n*************************';
-    // print_r ($_SESSION['addRow']);
-    // echo '$_SESSION[users] \n';
-// if(isset($_SESSION['page'])){
-//   print_r($_SESSION['page']);
-// }else{
-//   echo 'not set';
-// }
+  <div class="container">  
+        <h3 align="center">Make Pagination using Jquery, PHP, Ajax and MySQL</h3><br />  
+        <div class="table-responsive" id="pagination_data">  
+        </div>  
+  </div> 
+  
+  </select>
+  
+  <?php if (($_SESSION['role_id'])==1):?>
+    <p style='text-align:center'>Выбраный ID для правки:</p><div id="choosed_row" style='text-align:center'></div>
+  <?php endif; ?>
+  
 
-  ?>
-    </select>
 
     <p class="text-center login-title">Add task</p>
     
