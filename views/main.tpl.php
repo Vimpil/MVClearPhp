@@ -15,14 +15,22 @@
 
   <?php echo $_SESSION['role_id']; ?>
   <?php $adminLogin= ob_get_contents(); ?>
+
+
+  <?php if (($_SESSION['role_id'])==3):?>
+    <p >Wrong username/password.</p>
+  <?php endif; ?>
             
   <!-- IF logged ADMIN -->
   <?php if (($_SESSION['role_id'])==1):?>
      
     <p class="text-center login-title">Admin</p>
+
+    <input id='adminLogoutBtn' type="BUTTON" class="btn btn-lg btn-primary btn-block" value="Logout"/>
       
   <!-- ELSE -->
   <?php else:
+
     echo '<p class="text-center login-title">Admin Sign in</p>
     
     <form method="post" class="form-signin" id="form-signin" name="form-signin">
@@ -86,6 +94,10 @@
         <input type="button" class="btn btn-lg btn-primary btn-block" value="Обновить" disabled id='updateBtn'/>
         <script>
           window.role_id = 1;
+        </script>
+        <?php else:?>
+          <script>
+          window.role_id = 0;
         </script>
       <?php endif; ?>
 

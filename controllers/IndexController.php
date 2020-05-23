@@ -35,6 +35,15 @@ class IndexController extends Controller {
 					break;
 
 
+				case 'logout':
+				
+					if(!$this->logout()) {
+						// $this->pageData['loginError'] = "Неправильный логин или пароль";
+					}
+				
+					break;
+
+
 				case 'addTask':
 
 					if(!$this->addTask()) {
@@ -80,6 +89,14 @@ class IndexController extends Controller {
 	public function login() {
 
 		if(!$this->model->checkUser()) {
+			return false;
+		}
+		
+	}
+
+	public function logout() {
+
+		if(!$this->model->logout()) {
 			return false;
 		}
 		

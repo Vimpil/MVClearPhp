@@ -22,7 +22,15 @@ class IndexModel extends Model {
 
 		if(!empty($res)) {
 			$_SESSION['role_id'] = 1;
-		} 
+		} else{
+			$_SESSION['role_id'] = 3;
+		}
+
+	}
+
+	public function logout() {
+
+		$_SESSION['role_id'] = 0;
 
 	}
 
@@ -141,9 +149,9 @@ class IndexModel extends Model {
 			 $output .= '  
 			           <tr>  
 			                <td style="display:none">'.$row["id"].'</td> 
-			                <td>'.$row["name"].'</td>  
-			                 <td>'.$row["email"].'</td>  
-			                <td>'.$row["task"].'</td>  
+			                <td>'.htmlspecialchars($row["name"]).'</td>  
+			                 <td>'.htmlspecialchars($row["email"]).'</td>  
+			                <td>'.htmlspecialchars($row["task"]).'</td>  
 			                 <td>'.$status.'</td>  
 			           </tr>  
 			      ';  
