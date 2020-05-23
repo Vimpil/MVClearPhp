@@ -77,7 +77,6 @@ class IndexModel extends Model {
 		$total_records = '';
 		$res = [];
 		$query = '';
-		$tableHead = "'id'";
 		$ascDesc=$_POST["ascDesc"];
 
 		if(isset($_POST["page"]))  
@@ -97,7 +96,7 @@ class IndexModel extends Model {
  		if(isset($_POST["tableHead"])){
  			$tableHead = $_POST["tableHead"];
  		}else{
- 			$tableHead = "'id'";
+ 			$tableHead = 'id';
  		}
 
  		// if(isset($_POST["ascDesc"])){
