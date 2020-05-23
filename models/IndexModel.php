@@ -67,48 +67,6 @@ class IndexModel extends Model {
 
 	}
 
-
-	// function getUsernames(){
-
-	// 	// if (isset($_POST['something'])){
-
-	// 	// 	$something = $_POST['something'];
-
-	// 	// 	if($something){
-	// 	// 		print_r($something);
-	// 	// 	}
-
-	// 	// }else{
-	// 	// 	echo ' not set ';
-	// 	// }
-
-	 
-	//  // echo '\$request_url/';
-
-	// 	$record_per_page = 5;  
-	// 	$page = '';  
-	// 	$output = '';  
-	// 	$res = [];
-		
-	// 	$query = "SELECT * FROM tasks LIMIT $record_per_page";
-	// 	$stmt = $this->db->prepare($query);
-	// 	$stmt->execute();
-		
-	// 	while ($row=$stmt->fetch())
-
-	// 	{	
-	// 		$id = $row['id'];
-	// 	    $name = $row['name'];
-	// 	    $email = $row['email'];
-	// 	    $task = $row['task'];
-	// 	    $res[] = array("id" => $id,"name" => $name,"email" => $email,"task" => $task);
-	// 	}
-
-	    
-	//     return $res;
-
- //  	}
-
 	
 
 	function changeTablePage(){
@@ -118,6 +76,9 @@ class IndexModel extends Model {
 		$output = '';
 		$total_records = '';
 		$res = [];
+		$query = '';
+		$tableHead = "'id'";
+		$ascDesc=$_POST["ascDesc"];
 
 		if(isset($_POST["page"]))  
 		 {  
@@ -126,18 +87,33 @@ class IndexModel extends Model {
 		 else  
 		 {  
 		      $page = 1;  
-		 }  
-		
-		$_SESSION['page']='running Fun';
- 		$start_from = ($page - 1)*$record_per_page;
- 		echo '$page';
- 		echo $page;
- 		echo '$page';
- 		echo $start_from;
- 		echo '$page';
- 		echo $record_per_page;
- 		echo '$page';
-		$query = "SELECT * FROM tasks ORDER BY 'id' ASC LIMIT $start_from, $record_per_page";
+		 }
+
+
+		$start_from = ($page - 1)*$record_per_page;
+
+
+
+ 		if(isset($_POST["tableHead"])){
+ 			$tableHead = $_POST["tableHead"];
+ 		}else{
+ 			$tableHead = "'id'";
+ 		}
+
+ 		// if(isset($_POST["ascDesc"])){
+ 		// 	$ascDesc = $_POST["ascDesc"];
+ 		// }else{
+ 		// 	$ascDesc = "ASC";
+ 		// }
+
+ 		$query = "SELECT * FROM tasks ORDER BY $tableHead $ascDesc LIMIT $start_from, $record_per_page";
+	 	
+
+ 		echo '$tableHead';
+ 		echo $tableHead;
+ 		echo $ascDesc;
+ 		echo $query;
+
 		
 		$stmt = $this->db->prepare($query);
 		$stmt->execute();
@@ -282,11 +258,5 @@ class IndexModel extends Model {
 
 
   	}
-
-  	
-     
-
-
-	
 	
 }

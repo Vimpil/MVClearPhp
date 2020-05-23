@@ -62,7 +62,7 @@ class IndexController extends Controller {
 				if(!$this->updateRowTask()) {
 						
 					}
-					break;
+					break;				
 
 
 			}
@@ -119,6 +119,7 @@ class IndexController extends Controller {
 		}
 		
 	}
+	
 
 }
 
