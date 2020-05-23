@@ -1,7 +1,15 @@
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
 table {
   border-spacing: 0;
   width: 100%;
   border: 1px solid #ddd;
+  overflow: scroll;
+  height: 300px;
+  display: block;
 }
 
 th {
@@ -10,7 +18,12 @@ th {
 
 th, td {
   text-align: left;
-  padding: 16px;
+  padding: 25px;
+  overflow: scroll;
+}
+
+td:last-child{
+	text-align: center;
 }
 
 tr:nth-child(even) {
@@ -23,6 +36,8 @@ tr:nth-child(even) {
 
 #pagination_data tr{
 	cursor: pointer;
+	height: 20px;
+	overflow: scroll;
 }
 
 #pagination_data{

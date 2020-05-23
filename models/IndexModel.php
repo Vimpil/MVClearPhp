@@ -71,7 +71,7 @@ class IndexModel extends Model {
 
 	function changeTablePage(){
 
-		$record_per_page = 5;  
+		$record_per_page = 3;  
 		$page = '';  
 		$output = '';
 		$total_records = '';
@@ -119,13 +119,13 @@ class IndexModel extends Model {
 
 		$output .= "  
 			<table id='myTable'>
-	        <tbody>
+	        <tbody style='width:100%>
 	        <tr>
-	        	<th id='idClick' style='width:10%'>id</th>
-              	<th id='nameClick' style='width:20%'>name</th>
-              	<th id='emailClick' style='width:20%'>email</th>
-              	<th id='taskClick' style='width:40%'>task</th>
-              	<th id='statusClick' style='width:10%'>status</th>
+	        	<th id='idClick' name='id' style='display:none'>id</th>
+              	<th id='nameClick' name='name' style='width:30%'>пользователь</th>
+              	<th id='emailClick' name='email' style='width:20%'>email</th>
+              	<th id='taskClick' name='task' style='width:40%'>текст задачи</th>
+              	<th id='statusClick' name='status' style='width:10%'>статус</th>
            </tr>  
 		";  
 		$status='';
@@ -140,7 +140,7 @@ class IndexModel extends Model {
 
 			 $output .= '  
 			           <tr>  
-			                <td>'.$row["id"].'</td>  
+			                <td style="display:none">'.$row["id"].'</td> 
 			                <td>'.$row["name"].'</td>  
 			                 <td>'.$row["email"].'</td>  
 			                <td>'.$row["task"].'</td>  

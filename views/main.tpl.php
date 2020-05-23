@@ -72,11 +72,13 @@
         
       <input type="hidden">
                  
-      <input type="text" name="name" class="form-control" id="name" placeholder="Пользователь" required autofocus>
+      <input type="text" name="name" class="form-control" id="name" placeholder="Пользователь" required autofocus min="1">
                   
-      <input type="email" name="email" class="form-control" id="email" placeholder="e-mail" required>
 
-      <input type="text" name="task" class="form-control" id="task" placeholder="Задача" required>
+      <input type="email" name="email" class="form-control" id="email" placeholder="username@smth.com" required>
+
+
+      <input type="text" name="task" class="form-control" id="task" placeholder="Задача" required min="1">
                   
       <input type="button" class="btn btn-lg btn-primary btn-block" value="Добавить" id='addBtn'/>
 
