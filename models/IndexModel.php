@@ -20,6 +20,8 @@ class IndexModel extends Model {
 		$res = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
+		// wrong login
+
 		if(!empty($res)) {
 			$_SESSION['role_id'] = 1;
 		} else{
@@ -32,50 +34,7 @@ class IndexModel extends Model {
 
 		$_SESSION['role_id'] = 0;
 
-	}
-
-	public function createTable() {
-
-		/* Getting post data */
-		$somthing = $_POST['somthing'];
-		$rowperpage = $_POST['rowperpage'];
-
-		/* Count total number of rows */
-		$query = "SELECT count(*) as allcount FROM tasks";
-		
-		$stmt = $this->db->prepare($query);
-		$stmt->execute();
-
-		$fetchresult = mysqli_fetch_array($stmt);
-		$allcount = $fetchresult['allcount'];
-
-		/* Selecting rows */
-		$query = "SELECT * FROM tasks ORDER BY id ASC LIMIT ".$rowid.",".$rowperpage;
-
-		$stmt = $this->db->prepare($query);
-		$stmt->execute();	
-		
-		$users_arr = array();
-		$users_arr[] = array("allcount" => $allcount);
-
-		while($row = mysqli_fetch_array($stmt)){
-		    
-		    $id = $row['id'];
-		    $name = $row['name'];
-		    $email = $row['email'];
-		    $task = $row['task'];
-		    
-
-		    $employee_arr[] = array("id" => $id,"name" => $name,"email" => $email,"task" => $task);
-		}
-
-		/* encoding array to json format */
-		echo json_encode($employee_arr);
-		$_SESSION['employee_arr']=$employee_arr;
-
-	}
-
-	
+	}	
 
 	function changeTablePage(){
 
@@ -85,6 +44,7 @@ class IndexModel extends Model {
 		$total_records = '';
 		$res = [];
 		$query = '';
+		$status='';
 		$ascDesc=$_POST["ascDesc"];
 
 		if(isset($_POST["page"]))  
@@ -107,21 +67,8 @@ class IndexModel extends Model {
  			$tableHead = 'id';
  		}
 
- 		// if(isset($_POST["ascDesc"])){
- 		// 	$ascDesc = $_POST["ascDesc"];
- 		// }else{
- 		// 	$ascDesc = "ASC";
- 		// }
-
  		$query = "SELECT * FROM tasks ORDER BY $tableHead $ascDesc LIMIT $start_from, $record_per_page";
 	 	
-
- 		echo '$tableHead';
- 		echo $tableHead;
- 		echo $ascDesc;
- 		echo $query;
-
-		
 		$stmt = $this->db->prepare($query);
 		$stmt->execute();
 
@@ -129,14 +76,14 @@ class IndexModel extends Model {
 			<table id='myTable'>
 	        <tbody style='width:100%>
 	        <tr>
-	        	<th id='idClick' name='id' style='display:none'>id</th>
+	        	<th id='idClick' name='id' style='display:none'></th>
               	<th id='nameClick' name='name' style='width:30%'>пользователь</th>
               	<th id='emailClick' name='email' style='width:20%'>email</th>
               	<th id='taskClick' name='task' style='width:40%'>текст задачи</th>
               	<th id='statusClick' name='status' style='width:10%'>статус</th>
            </tr>  
 		";  
-		$status='';
+
 		while ($row=$stmt->fetch())
 
 		{	
@@ -186,19 +133,15 @@ class IndexModel extends Model {
 		      $output .= "<span class='pagination_link' style='cursor:pointer; padding:6px; border:1px solid #ccc;' id='".$i."'>".$i."</span>";  
 		  }
 		 } 
-		
 
 		$res = $output;
 
 	    print_r($res);
 
-
   	}
 
   	function addTask(){
-	// FROM tasks ORDER BY DESC LIMIT 1";
-  		
-
+	
   		$query = "SELECT * from tasks;";
 		$stmt = $this->db->prepare($query);
 		$stmt->execute();
@@ -228,19 +171,7 @@ class IndexModel extends Model {
 		$query = "INSERT INTO tasks VALUES ('$newId', '$name', '$email', '$task', '$status', '0');";
 
 		$stmt = $this->db->prepare($query);
-		$stmt->execute();
-
-		// $query = "Delete from tasks where email='email';";
-		// $stmt = $this->db->prepare($query);
-		// $stmt->execute();
-
-
-		// $query = "INSERT INTO tasks VALUES ($lastId, $name, $email, $task, $status);";
-		// $stmt = $this->db->prepare($query);
-		// // $stmt = $this->db->insert('tasks', $data);
-		// $stmt->execute();
-
-		
+		$stmt->execute();		
 
   	}
 

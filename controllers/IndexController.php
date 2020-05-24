@@ -1,7 +1,5 @@
 <?php
 
-require_once('Controller.php');
-
 
 class IndexController extends Controller {
 	
@@ -29,7 +27,7 @@ class IndexController extends Controller {
 				case 'login':
 				
 					if(!$this->login()) {
-						// $this->pageData['loginError'] = "Неправильный логин или пароль";
+						
 					}
 				
 					break;
@@ -38,7 +36,7 @@ class IndexController extends Controller {
 				case 'logout':
 				
 					if(!$this->logout()) {
-						// $this->pageData['loginError'] = "Неправильный логин или пароль";
+						
 					}
 				
 					break;
@@ -76,11 +74,7 @@ class IndexController extends Controller {
 
 			}
 		}
-
-		 
-		// print_r($this->model->getUsernames());
 		
-		// $_SESSION['users'] = $this->model->getUsernames();
 
 		$this->view->render($this->pageTpl, $this->pageData);
 	}
@@ -153,19 +147,6 @@ if (is_ajax()) {
 //Function to check if the request is an AJAX request
 function is_ajax() {
   return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-}
-
-function test_function(){
-  $return = $_POST;
-  
-  //Do what you need to do with the info. The following are some examples.
-  //if ($return["favorite_beverage"] == ""){
-  //  $return["favorite_beverage"] = "Coke";
-  //}
-  //$return["favorite_restaurant"] = "McDonald's";
-  
-  $return["json"] = json_encode($return);
-  echo json_encode($return);
 }
 ?>
 
