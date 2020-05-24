@@ -140,10 +140,17 @@ class IndexModel extends Model {
 		while ($row=$stmt->fetch())
 
 		{	
-			if($row["status"]==0){
-				$status='<input type="checkbox">';
+			
+			if($row["editedTask"]==1){
+				$editedTask='<div class = "editedTask">edited</div>';
 			}else{
-				$status='<input type="checkbox" checked>';
+				$editedTask='';
+			}
+
+			if($row["status"]==0){
+				$status='<input type="checkbox"> '.$editedTask;
+			}else{
+				$status='<input type="checkbox" checked>'.$editedTask;
 			};
 
 			 $output .= '  
@@ -218,7 +225,7 @@ class IndexModel extends Model {
 		$status = 0;
 		$newId=$lastId['id']+1;
 
-		$query = "INSERT INTO tasks VALUES ('$newId', '$name', '$email', '$task', '$status');";
+		$query = "INSERT INTO tasks VALUES ('$newId', '$name', '$email', '$task', '$status', '0');";
 
 		$stmt = $this->db->prepare($query);
 		$stmt->execute();
@@ -258,7 +265,7 @@ class IndexModel extends Model {
   		$task = $_POST['task'];  
 
 
-		$query = "UPDATE tasks SET task='$task' WHERE id=$id;";
+		$query = "UPDATE tasks SET task='$task', editedTask='1' WHERE id=$id;";
 
 		$stmt = $this->db->prepare($query);
 		$stmt->execute();

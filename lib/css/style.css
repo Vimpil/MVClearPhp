@@ -20,6 +20,7 @@ th, td {
   text-align: left;
   padding: 25px;
   overflow: scroll;
+  position: relative;
 }
 
 td:last-child{
@@ -50,4 +51,13 @@ tr:nth-child(even) {
 
 .pagination_link.active{
 	color: cornflowerblue;
+}
+
+.editedTask{
+	position: absolute;
+	color:red;
+	font-size: 15px;
+	left: 30px;
+	display: block;
+
 }
